@@ -8,11 +8,15 @@ terraform {
 
   required_version = ">= 0.14.9"
 }
-resource "aws_instance" "this" {
-  availability_zone = var.availability_zone
+
+provider "aws" {
+  profile = "default"
+  region  = "us-west-2"
+}
+
+resource "aws_instance" "Jmeter_server" {
   ami               = var.aws_ami
   instance_type     = var.aws_instance_type
-  key_name          = var.aws_key_name
   tags = {
     Name = "Santhosh_AWS_JMeter_Server"
   }
